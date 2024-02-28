@@ -23,7 +23,6 @@ defmodule UnstructuredPipelineAPI.Connection do
                       "https://api.unstructured.io"
                     )
 
-
   @typedoc """
   The list of options that can be passed to new/1.
 
@@ -32,7 +31,7 @@ defmodule UnstructuredPipelineAPI.Connection do
   """
   @type options :: [
           {:base_url, String.t()},
-          {:user_agent, String.t()},
+          {:user_agent, String.t()}
         ]
 
   @doc "Forward requests to Tesla."
@@ -70,9 +69,6 @@ defmodule UnstructuredPipelineAPI.Connection do
     |> Tesla.client(adapter())
   end
 
-
-
-
   @doc """
   Returns fully configured middleware for passing to Tesla.client/2.
   """
@@ -96,11 +92,9 @@ defmodule UnstructuredPipelineAPI.Connection do
         Keyword.get(
           tesla_options,
           :user_agent,
-          "openapi-generator - UnstructuredPipelineAPI 0.0.1 - elixir"
+          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36"
         )
       )
-
-
 
     [
       {Tesla.Middleware.BaseUrl, base_url},
@@ -109,7 +103,6 @@ defmodule UnstructuredPipelineAPI.Connection do
       | middleware
     ]
   end
-
 
   @doc """
   Returns the default adapter for this API.

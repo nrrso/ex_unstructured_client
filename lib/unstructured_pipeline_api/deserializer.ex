@@ -16,7 +16,7 @@ defmodule UnstructuredPipelineAPI.Deserializer do
     json
     |> jason_decode()
     |> case do
-      {:ok, decoded} -> {:ok, to_struct(decoded, module)}
+      {:ok, decoded} -> {:ok, decoded}
       {:error, _} = error -> error
     end
   end
@@ -94,7 +94,6 @@ defmodule UnstructuredPipelineAPI.Deserializer do
   end
 
   defp to_struct(map_or_list, module)
-  defp to_struct(nil, _), do: nil
 
   defp to_struct(list, module) when is_list(list) and is_atom(module) do
     Enum.map(list, &to_struct(&1, module))
@@ -111,4 +110,6 @@ defmodule UnstructuredPipelineAPI.Deserializer do
     end)
     |> module.decode()
   end
+
+  defp to_struct(nil, _), do: nil
 end

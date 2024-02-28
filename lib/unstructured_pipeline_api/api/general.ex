@@ -39,7 +39,10 @@ defmodule UnstructuredPipelineAPI.Api.General do
   - `{:ok, [%AnyType{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec partition(Tesla.Env.client, String.t, keyword()) :: {:ok, list(any())} | {:ok, UnstructuredPipelineAPI.Model.HttpValidationError1.t} | {:error, Tesla.Env.t}
+  @spec partition(Tesla.Env.client(), String.t(), keyword()) ::
+          {:ok, list(any())}
+          | {:ok, UnstructuredPipelineAPI.Model.HttpValidationError1.t()}
+          | {:error, Tesla.Env.t()}
   def partition(connection, files, opts \\ []) do
     optional_params = %{
       :strategy => :form,
